@@ -5,7 +5,7 @@ class My_Tasks_1Controller:
     obj = MyTasks_1()  # Создал объект класса MyTasks_1
 
     # Добавить дело - Create
-    @classmethod
+    @classmethod        # Классметод позволяет вызывать методы из класса не создавая для него объект
     def add(cls, task):
         cls.obj.tasks = {
             "task": task,

@@ -18,6 +18,6 @@ class MyTasks_13:
 
 if __name__ == "__main__":
     recipe = MyTasks_13()
-    print("Исходные рецепты:", recipe.recipes)
-    recipe.recipes = {"name": "Омлет", "ingredients": ["яйца", "молоко", "соль"], "cooking_time": 10, "difficulty": "легкая"}
+    print("Все рецепты:", recipe.recipes)
+    recipe.recipes = {"name": "Яичница", "ingredients": ["яйца", "лук", "масло"], "cooking_time": 7, "difficulty": "легкая"}
     print("Добавлен новый рецепт:", recipe.recipes)
