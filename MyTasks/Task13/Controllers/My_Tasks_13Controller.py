@@ -1,6 +1,5 @@
 from MyTasks.Task13.Models.MyTasks_13 import MyTasks_13
 
-
 class My_Tasks_13Controller:
     obj = MyTasks_13()
 
