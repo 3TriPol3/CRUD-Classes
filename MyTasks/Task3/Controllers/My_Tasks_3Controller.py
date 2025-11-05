@@ -43,8 +43,7 @@ class My_Tasks_3Controller:
         for dict in cls.get():
             if dict["id"] == id:
                 cls.get().remove(dict)
-                return f"Есть {id}"
-        return f"Нет - {id}"
+        return dict
 
 
 if __name__ == "__main__":

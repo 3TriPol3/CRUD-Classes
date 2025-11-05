@@ -1,6 +1,5 @@
 from MyTasks.Task1.Models.MyTasks_1 import MyTasks_1
 
-
 class My_Tasks_1Controller:
     obj = MyTasks_1()  # Создал объект класса MyTasks_1
 
@@ -30,12 +29,10 @@ class My_Tasks_1Controller:
     # Удалить
     @classmethod
     def delete(cls, id):
-        for i, dict in enumerate(cls.get()):
+        for dict in cls.get():
             if dict["id"] == id:
-                del cls.get()[i]
-                return True
-        return f"Задачи с ID {id} нет"
-
+                cls.get().remove(dict)
+        return dict
 
 if __name__ == "__main__":
     print(My_Tasks_1Controller.get())
