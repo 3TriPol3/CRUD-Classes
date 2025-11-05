@@ -20,10 +20,10 @@
 #
 #     # Поиск рецепта по ингредиенту
 #     @classmethod
-#     def find_ingredient(cls, ingredient):
+#     def find_ingredient(cls, ingredients):
 #         result = []
 #         for dict in cls.get():
-#             if ingredient in dict["ingredients"]:
+#             if ingredients in dict["ingredients"]:
 #                 result.append(dict)
 #         return result
 #
@@ -56,7 +56,7 @@ class My_Tasks_13Controller:
 
     # Добавление рецепта
     @classmethod        # Классметод позволяет вызывать методы из класса не создавая для него объект
-    def add(cls, name, cooking_time, difficulty, *ingredients):
+    def add(cls, name, cooking_time, difficulty, ingredients):
         # new_ingredients = []
         # for element in ingredients:
         #     new_ingredients.append(element)
@@ -93,5 +93,5 @@ if __name__ == "__main__":
     print("Все рецепты: ", My_Tasks_13Controller.get())
     My_Tasks_13Controller.add("Яичница", 7, "легкая", ["яйца", "лук", "масло"])
     print("После добавления: ", My_Tasks_13Controller.get())
-    print("Рецепты с яйцами: ", My_Tasks_13Controller.find_ingredient())
+    print("Рецепты с яйцами: ", My_Tasks_13Controller.find_ingredient("яйца"))
     print("Быстрые рецепты: ", My_Tasks_13Controller.fast_recipes())
