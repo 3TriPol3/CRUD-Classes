@@ -63,7 +63,7 @@ class My_Tasks_13Controller:
         # new_new_ingredients = [element for element in ingredients]
         dict = {
             "name": name,
-            "ingredients": [element for element in ingredients],
+            "ingredients": list(ingredients),
             "cooking_time": cooking_time,
             "difficulty": difficulty
         }
@@ -72,10 +72,10 @@ class My_Tasks_13Controller:
 
     # Поиск рецепта по ингредиенту
     @classmethod
-    def find_ingredient(cls, ingredient):
+    def find_ingredient(cls, ingredients):
         result = []
         for dict in cls.get():
-            if ingredient in dict["ingredients"]:
+            if ingredients in dict["ingredients"]:
                 result.append(dict)
         return result
 
@@ -91,7 +91,7 @@ class My_Tasks_13Controller:
 
 if __name__ == "__main__":
     print("Все рецепты: ", My_Tasks_13Controller.get())
-    My_Tasks_13Controller.add("Яичница", 7, "легкая", ["яйца", "лук", "масло"],)
+    My_Tasks_13Controller.add("Яичница", 7, "легкая", ["яйца", "лук", "масло"])
     print("После добавления: ", My_Tasks_13Controller.get())
-    print("Рецепты с яйцами: ", My_Tasks_13Controller.find_ingredient("яйца"))
+    print("Рецепты с яйцами: ", My_Tasks_13Controller.find_ingredient())
     print("Быстрые рецепты: ", My_Tasks_13Controller.fast_recipes())
