@@ -28,7 +28,8 @@ from MyTasks.Task5.Models.BaseModel import *
 class StudentsList(BaseModel): # Этот класс наследует базовую модель - BaseModel
     '''
      Этот класс описывает таблицу в базе данных
-     '''
+     Передаёт названия стобцов в таблице: id, name, age, grade
+    '''
     id = PrimaryKeyField()
     name = CharField()
     age = IntegerField()

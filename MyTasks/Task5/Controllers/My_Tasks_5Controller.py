@@ -64,13 +64,13 @@ class StudentsController:
     Функции: добавить студента, изменить оценку, найти по имени, удалить студента
     '''
 
-    # Добавить студента
+    # Добавить нового студента
     @classmethod
     def add(cls, name, age, grade):
         # Вызвывем метод из peewee (create)
         StudentsList.create(name=name, age=age, grade=grade)
 
-    # Изменить оценку студента по id
+    # Изменить оценку студента по - id
     @classmethod
     def update(cls, id, **kwargs):
         StudentsList.update(**kwargs).where(StudentsList.id == id).execute()
