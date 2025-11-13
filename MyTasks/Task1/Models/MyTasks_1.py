@@ -27,7 +27,7 @@ from MyTasks.Task1.Models.BaseModel import *
 
 class Task(BaseModel):
     '''
-    Этот клас описывает таблицу task в базе данных
+    Этот класс описывает таблицу task в базе данных
     '''
     id = PrimaryKeyField() # первичный ключ в таблице
     task = CharField() # символьный тип данных (строка) с  максимальным количеством символов 255, не пустое

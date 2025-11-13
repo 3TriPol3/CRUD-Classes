@@ -1,9 +1,8 @@
 from peewee import *
 
-# Подключение к базе данных MySQL по сети.
 mysql_db = MySQLDatabase(
-    'BessM82_stud_5',
-    user='BessM82_stud_5',
+    'BessM82_expens_6',
+    user='BessM82_expens_6',
     password='111111',
     host='10.11.13.118',
     port=3306

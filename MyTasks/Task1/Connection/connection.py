@@ -1,5 +1,6 @@
 from peewee import *
 
+# Connect to a MySQL database on network.
 mysql_db = MySQLDatabase(
     'BessM82_tasks_1',
     user='BessM82_tasks_1',

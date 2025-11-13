@@ -47,8 +47,8 @@ from MyTasks.Task1.Models.MyTasks_1 import *
 class TaskController:
     '''
     CRUD
-    Через модель Task подключаемся к базе данных таблице task
-    и упрвляем данными
+    Через модель подключаемся к базе данных таблице task
+    и управляем данными
     Model.create(), for executing INSERT queries.
 
     Model.save() and Model.update(), for executing UPDATE queries.
