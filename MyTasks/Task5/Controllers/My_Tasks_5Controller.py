@@ -87,9 +87,9 @@ class StudentsController:
 
 
 if __name__ == "__main__":
-    # StudentsController.add('Max','20','A') # Добавить Студента
+    # StudentsController.add('Sergey','25','C') # Добавить Студента
 
-    # StudentsController.update(2, grade='D') # Изменить оценку
+    # StudentsController.update(5, grade='D') # Изменить оценку
 
     for element in StudentsController.get_name('Max'): # Найти по имени
         print(element.id, element.name, element.age, element.grade)
