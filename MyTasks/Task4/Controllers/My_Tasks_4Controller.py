@@ -1,67 +1,40 @@
-from MyTasks.Task4.Models.MyTasks_4 import MyTasks_4
+from MyTasks.Task4.Models.MyTasks_4 import *
 
 
-class My_Tasks_4Controller:
-    obj = MyTasks_4()  # Создал объект класса MyTasks_4
+class MovieController:
+    '''
+    CRUD
+    Функции: добавить фильм, поставить оценку, найти по названию, показать непросмотренные
+    '''
 
-    # Добавить фильм - Create
     @classmethod
-    def add(cls, title, year, rating, watched=False):
-        cls.obj.movies = {
-            "title": title,
-            "year": year,
-            "rating": rating,
-            "watched": watched
-        }
-        return True
-
-    # Прокси-метод
+    def add(cls, title, year, rating=0.0, watched=False):
+        '''
+            добавить фильм
+        '''
+        MovieList.create(
+            title = title,
+            year = year,
+            rating = rating,
+            watched = watched
+        )
     @classmethod
-    def get(cls):
-        return cls.obj.movies
+    def rating_update(cls,id,rating):
+        '''поставить оценку'''
+        MovieList.update({MovieList.rating:rating}).where(MovieList.id == id).execute()
 
-    # Поставить оценку
     @classmethod
-    def set_rating(cls, id, new_rating):
-        for dict in cls.get():
-            if dict["id"] == id:
-                dict["rating"] = new_rating
-                return dict
-        return f"Фильма с ID {id} нет"
+    def get_title(cls,title):
+        return MovieList.select().where(MovieList.title == title)
 
-    # Найти по названию
     @classmethod
-    def find_by_name(cls, title):
-        result = []
-        for dict in cls.get():
-            if dict["title"] == title:
-                result.append(dict)
-        return result
-
-    # Показать непросмотренные
-    @classmethod
-    def show_unwatched(cls):
-        result = []
-        for dict in cls.get():
-            if not dict["watched"]:
-                result.append(dict)
-        return result
-
-    # Удалить фильм
-    @classmethod
-    def delete(cls, id):
-        for dict in cls.get():
-            if dict["id"] == id:
-                cls.get().remove(dict)
-        return dict
-
+    def get_watched_false(cls):
+        return MovieList.select().where(MovieList.watched == False)
 
 if __name__ == "__main__":
-    print(My_Tasks_4Controller.get())
-    print(My_Tasks_4Controller.add("Интерстеллар", 2014, 8.6))
-    print(My_Tasks_4Controller.get())
-    print(My_Tasks_4Controller.set_rating(2, 9.0))
-    print(My_Tasks_4Controller.find_by_name("Крест"))
-    print(My_Tasks_4Controller.show_unwatched())
-    print(My_Tasks_4Controller.delete(1))
-    print(My_Tasks_4Controller.get())
+    MovieController.add('Крёстный отец',1992) # добавить фильм
+    # for movie in MovieController.get_title('крёстный отец'): # Найти по названию
+    #     print(movie.id, movie.title,movie.rating, movie.year,movie.watched)
+    # # MovieController.rating_update(1, 5)
+    # for movie in MovieController.get_watched_false(): # показать непросмотренные
+    #     print(movie.id, movie.title, movie.rating, movie.year, movie.watched)

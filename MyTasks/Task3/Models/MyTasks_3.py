@@ -30,8 +30,5 @@ class ShopingList(BaseModel):
     quantity = IntegerField()
     bought = BooleanField(default=False)
 
-
-
-
 if __name__ == "__main__":
     mysql_db.create_tables([ShopingList])

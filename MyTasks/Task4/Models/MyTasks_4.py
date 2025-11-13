@@ -1,24 +1,14 @@
-class MyTasks_4:
-    def __init__(self):
-        self.__list_movies = [
-            {"id": 1, "title": "Крестный отец", "year": 1972, "rating": 9.2, "watched": True},
-            {"id": 2, "title": "Матрица", "year": 1999, "rating": 8.7, "watched": False}
-        ]
-        self.id = 3  # Следующий ID для нового фильма
+from MyTasks.Task4.Models.BaseModel import *
 
-    @property
-    def movies(self):
-        return self.__list_movies
-
-    @movies.setter
-    def movies(self, dict):
-        dict['id'] = self.id
-        self.__list_movies.append(dict)
-        self.id += 1
-
+class MovieList(BaseModel):
+    '''
+    movies = [{"id": 1, "title": "Крестный отец", "year": 1972, "rating": 9.2, "watched":True}]
+    '''
+    id = PrimaryKeyField()
+    title = CharField()
+    year = IntegerField()
+    rating = FloatField(default=0.0)
+    watched = BooleanField(default=False)
 
 if __name__ == "__main__":
-    movie = MyTasks_4()
-    print(movie.movies)
-    movie.movies = {"title": "Интерстеллар", "year": 2014, "rating": 8.6, "watched": False}
-    print(movie.movies)
+    mysql_db.create_tables([MovieList])
