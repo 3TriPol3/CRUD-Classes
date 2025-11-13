@@ -1,6 +1,5 @@
 from MyTasks.Task4.Models.MyTasks_4 import *
 
-
 class MovieController:
     '''
     CRUD
@@ -25,16 +24,19 @@ class MovieController:
 
     @classmethod
     def get_title(cls,title):
+        '''найти по названию'''
         return MovieList.select().where(MovieList.title == title)
 
     @classmethod
     def get_watched_false(cls):
+        '''показать непросмотренные'''
         return MovieList.select().where(MovieList.watched == False)
 
 if __name__ == "__main__":
-    MovieController.add('Крёстный отец',1992) # добавить фильм
-    # for movie in MovieController.get_title('крёстный отец'): # Найти по названию
-    #     print(movie.id, movie.title,movie.rating, movie.year,movie.watched)
-    # # MovieController.rating_update(1, 5)
-    # for movie in MovieController.get_watched_false(): # показать непросмотренные
-    #     print(movie.id, movie.title, movie.rating, movie.year, movie.watched)
+    MovieController.add('1+1',1992) # Добавить фильм
+    # MovieController.rating_update(1, 5.0) # Поставить оценку
+    for movie in MovieController.get_title('крёстный отец'): # Найти по названию
+        print(movie.id, movie.title,movie.rating, movie.year,movie.watched)
+
+    for movie in MovieController.get_watched_false(): # Показать непросмотренные
+        print(movie.id, movie.title, movie.rating, movie.year, movie.watched)
