@@ -24,7 +24,10 @@
 #     print(product.products)
 from MyTasks.Task3.Models.BaseModel import *
 
-class ShopingList(BaseModel):
+class ShopingList(BaseModel): # Этот класс наследует базовую модель - BaseModel
+    '''
+       Этот класс описывает таблицу в базе данных
+    '''
     id = PrimaryKeyField()
     product = CharField()
     quantity = IntegerField()

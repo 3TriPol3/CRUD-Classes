@@ -1,7 +1,7 @@
 # Подключение к БД - MySQL ORM Peewee
 from peewee import *
 
-
+# Подключение к базе данных MySQL по сети.
 mysql_db = MySQLDatabase(
     'BessM82_phone_2',
     user='BessM82_phone_2',

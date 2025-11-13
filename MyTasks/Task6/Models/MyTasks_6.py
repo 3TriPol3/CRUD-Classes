@@ -25,7 +25,10 @@
 
 from MyTasks.Task6.Models.BaseModel import *
 
-class ExpensesList(BaseModel):
+class ExpensesList(BaseModel): # Этот класс наследует базовую модель - BaseModel
+    '''
+       Этот класс описывает таблицу в базе данных
+    '''
     id = PrimaryKeyField()
     amount = IntegerField()
     category = CharField()

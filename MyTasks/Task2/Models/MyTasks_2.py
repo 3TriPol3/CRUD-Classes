@@ -25,7 +25,10 @@
 
 from MyTasks.Task2.Models.BaseModel import *
 
-class PhoneList(BaseModel):
+class PhoneList(BaseModel): # Этот класс наследует базовую модель - BaseModel
+    '''
+       Этот класс описывает таблицу в базе данных
+    '''
     id = PrimaryKeyField()
     name = CharField()
     phone = IntegerField()

@@ -61,26 +61,26 @@ class StudentsController:
     '''
     Через модель подключаемся к базе данных к таблице и управляем данными
     CRUD
-    Функции: добавить студента, изменить оценку, найти по имени, удалить
+    Функции: добавить студента, изменить оценку, найти по имени, удалить студента
     '''
 
     # Добавить студента
     @classmethod
     def add(cls, name, age, grade):
-        # Вызвывем метод из peewee
+        # Вызвывем метод из peewee (create)
         StudentsList.create(name=name, age=age, grade=grade)
 
-    # Изменить оценку
+    # Изменить оценку студента по id
     @classmethod
     def update(cls, id, **kwargs):
         StudentsList.update(**kwargs).where(StudentsList.id == id).execute()
 
-    # Найти по имени
+    # Найти студента по имени - name
     @classmethod
     def get_name(cls, name):
         return StudentsList.select().where(StudentsList.name == name)
 
-    # Удалить
+    # Удалить студента по - id
     @classmethod
     def delete(cls, id):
         StudentsList.delete_by_id(id)
