@@ -1,6 +1,6 @@
 from peewee import *
 
-mysql_db = MySQLDatabase(
+mysql_db = MySQLDatabase( # MySQLDatabase - класс, mysql_db - Объект.
     'BessM82_recip_13',
     user='BessM82_recip_13',
     password='111111',
