@@ -26,7 +26,7 @@ from MyTasks.Task13.Models.BaseModel import *
 
 class RecipesList(BaseModel): # Этот класс наследует базовую модель - BaseModel
     '''
-       Этот класс описывает таблицу в базе данных
+    Этот класс описывает таблицу в базе данных
     '''
     id = PrimaryKeyField()
     name = CharField()
