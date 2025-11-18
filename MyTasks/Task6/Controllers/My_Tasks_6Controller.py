@@ -73,4 +73,6 @@ class ExpensesController:
 # if __name__ == "__main__":
     # ExpensesController.add(1500, 'Еда', '2025-03-11', 'Покупка в магазине') # Добавить расход
 
-    # print(ExpensesController.get_total_by_category('Еда'))
+    # ExpensesController.get_total_by_category('Еда') # сумма по категории # /*/
+
+    # ExpensesController.get_expenses_in_period('') # расходы за период # /*/

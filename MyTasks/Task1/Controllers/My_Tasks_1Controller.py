@@ -57,6 +57,8 @@ class TaskController:
 
     Model.select(), for executing SELECT queries.
 
+    CRUD
+    Функции: добавить, показать все, отметить выполненной, удалить
     '''
     @classmethod
     def add(cls,task):

@@ -72,7 +72,7 @@ class MealsController:
 if __name__ == "__main__":
     # MealsController.add('Обед', 'Борщ', '1000', '11:35')  # Добавить приём пищи
 
-    # MealsController.total_calories() # /*/
+    # MealsController.total_calories() # Калорий за день # /*/
 
     for element in MealsController.get_time('08:00'): # Найти по времени - time
         print(element.id, element.meal, element.food, element.calories, element.time)

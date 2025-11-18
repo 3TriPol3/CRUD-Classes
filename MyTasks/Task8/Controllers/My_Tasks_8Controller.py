@@ -60,7 +60,7 @@ from MyTasks.Task8.Models.MyTasks_8 import *
 class StaffController:
     '''
     CRUD
-    Функции: добавить расход, сумма по категории, расходы за период
+    Функции: добавить сотрудника, повысить зарплату, сотрудники отдела, уволить
     '''
 
     # Добавить книгу
@@ -88,7 +88,7 @@ class StaffController:
 if __name__ == "__main__":
     # StaffController.add('Анастасия', 'Главный Бухгалтер', 75000, 'Бухгалтерия')  # Добавить сотрудника
 
-    # StaffController.increase_salary(1)  #Увеличение зарплаты
+    # StaffController.increase_salary(1)  #Увеличение зарплаты # /*/
 
     for element in StaffController.get_department('IT'): # Сотрудники по отделам
         print(element.id, element.name, element.position, element.salary, element.department)

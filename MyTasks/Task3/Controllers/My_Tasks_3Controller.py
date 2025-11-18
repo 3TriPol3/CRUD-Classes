@@ -58,10 +58,12 @@ from itertools import product
 
 from MyTasks.Task3.Models.MyTasks_3 import *
 
-# Функции: добавить продукт, отметить купленным, показать некупленное
-# Удалить
 
 class ShopingListController:
+    '''
+    CRUD
+    Функции: добавить продукт, отметить купленным, показать некупленное, удалить
+    '''
 
     @classmethod
     def add(cls, product, quantity):

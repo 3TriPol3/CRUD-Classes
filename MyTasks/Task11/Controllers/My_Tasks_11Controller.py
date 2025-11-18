@@ -76,4 +76,4 @@ if __name__ == "__main__":
     for element in EventsController.get_date('2025-11-19'): # События на дату - date
         print(element.id, element.title, element.date, element.time, element.description)
 
-    # EventsController.total_calories() # /*/
+    # EventsController.upcoming_events() # Предстоящие события # /*/

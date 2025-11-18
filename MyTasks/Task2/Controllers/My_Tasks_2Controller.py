@@ -61,6 +61,10 @@ from MyTasks.Task2.Models.MyTasks_2 import *
 
 
 class PhoneListController:
+    '''
+    CRUD
+    Функции: добавить контакт, найти по имени, обновить телефон, удалить контакт
+    '''
 
     # Добавление контакта
     @classmethod

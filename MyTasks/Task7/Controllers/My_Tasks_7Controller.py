@@ -61,7 +61,7 @@ from MyTasks.Task7.Models.MyTasks_7 import *
 class BooksController:
     '''
     CRUD
-    Функции: добавить расход, сумма по категории, расходы за период
+    Функции: добавить книгу, отметить прочитанной, найти по автору, книги определенного года
     '''
 
     # Добавить книгу
@@ -86,9 +86,9 @@ class BooksController:
         return BooksList.select().where(BooksList.author == author)
 
     #  Книги определенного года
-    # @classmethod
-    # def filter_by_year(cls, year):
-    #     result = []
+    @classmethod
+    def get_year(cls, year):
+        return BooksList.select().where(BooksList.year == year)
 
 
 
@@ -100,7 +100,8 @@ if __name__ == "__main__":
     for element in BooksController.get_author('Толстой'):  # Найти по автору
         print(element.id, element.title, element.author, element.year, element.read)
 
-    # BooksController.filter_by_year(1852) # Книги определенного года
+    for element in BooksController.get_year(1852):  # Найти по году
+        print(element.id, element.title, element.author, element.year, element.read)
 
 
 
