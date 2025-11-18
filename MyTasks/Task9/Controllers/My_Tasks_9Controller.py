@@ -63,3 +63,41 @@ class GamesController:
     CRUD
     Функции: добавить расход, сумма по категории, расходы за период
     '''
+
+    # Добавить игру
+    @classmethod
+    def add(cls, title, genre, platform):
+        # Вызвывем метод из peewee
+        GamesList.create(title=title, genre=genre, platform=platform, completed=False)
+
+    # Найти игру по жанру - genre
+    @classmethod
+    def get_genre(cls, genre):
+        return GamesList.select().where(GamesList.genre == genre)
+
+    # Изменить запись
+    @classmethod
+    def update(cls, id, **kwargs):
+        GamesList.update(**kwargs).where(GamesList.id == id).execute()
+
+    # отметить игру пройденной - completed
+    @classmethod
+    def completed(cls, id):
+        cls.update(id, completed=True)
+
+    # Найти игру по платформе - platform
+    @classmethod
+    def get_platform(cls, platform):
+        return GamesList.select().where(GamesList.platform == platform)
+
+
+if __name__ == "__main__":
+    # GamesController.add('Cyberpunk 2077', 'RPG', 'PC')  # Добавить игру
+
+    for element in GamesController.get_genre('RPG'): # Найти игру по жанру
+        print(element.id, element.title, element.genre, element.platform, element.completed)
+
+    GamesController.completed(2) # Отметить пройденной
+
+    for element in GamesController.get_platform('PC'): # Найти игру по платформе
+        print(element.id, element.title, element.genre, element.platform, element.completed)
