@@ -1,23 +1,39 @@
-class MyTasks_11:
-    def __init__(self):
-        self.__events = [
-            {"id": 1, "title": "Встреча", "date": "2024-02-15", "time": "14:00", "description": "С коллегами"}
-        ]
-        self.id = 2  # Следующий ID для нового события
+# class MyTasks_11:
+#     def __init__(self):
+#         self.__events = [
+#             {"id": 1, "title": "Встреча", "date": "2024-02-15", "time": "14:00", "description": "С коллегами"}
+#         ]
+#         self.id = 2  # Следующий ID для нового события
+#
+#     @property
+#     def events(self):
+#         return self.__events
+#
+#     @events.setter
+#     def events(self, dict):
+#         dict['id'] = self.id
+#         self.__events.append(dict)
+#         self.id += 1
+#
+#
+# if __name__ == "__main__":
+#     event = MyTasks_11()
+#     print("События:", event.events)
+#     event.events = {"title": "Совещание", "date": "2024-02-16", "time": "10:00", "description": "По проекту"}
+#     print("Новое событие:", event.events)
 
-    @property
-    def events(self):
-        return self.__events
+from MyTasks.Task11.Models.BaseModel import *
 
-    @events.setter
-    def events(self, dict):
-        dict['id'] = self.id
-        self.__events.append(dict)
-        self.id += 1
+class EventsList(BaseModel): # Этот класс наследует базовую модель - BaseModel
+    '''
+       Этот класс описывает таблицу в базе данных
+    '''
+    id = PrimaryKeyField()
+    title = CharField()
+    date = DateField()
+    time = TimeField()
+    description = CharField()
 
 
 if __name__ == "__main__":
-    event = MyTasks_11()
-    print("События:", event.events)
-    event.events = {"title": "Совещание", "date": "2024-02-16", "time": "10:00", "description": "По проекту"}
-    print("Новое событие:", event.events)
+    mysql_db.create_tables([EventsList])

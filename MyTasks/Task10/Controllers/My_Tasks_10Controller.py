@@ -49,7 +49,7 @@ from MyTasks.Task10.Models.MyTasks_10 import *
 class MealsController:
     '''
     CRUD
-    Функции: добавить расход, сумма по категории, расходы за период
+    Функции: добавить прием пищи, калории за день, найти по времени
     '''
 
     # Добавить прием пищи
@@ -72,7 +72,7 @@ class MealsController:
 if __name__ == "__main__":
     # MealsController.add('Обед', 'Борщ', '1000', '11:35')  # Добавить приём пищи
 
-    # MealsController.total_calories()
+    # MealsController.total_calories() # /*/
 
     for element in MealsController.get_time('08:00'): # Найти по времени - time
         print(element.id, element.meal, element.food, element.calories, element.time)
