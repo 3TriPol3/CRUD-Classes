@@ -24,10 +24,16 @@
 
 from MyTasks.Task18.Models.BaseModel import *
 
-class ListEquipment(Model):
+class EquipmentList(BaseModel): # Этот класс наследует базовую модель - BaseModel
+    '''
+    Этот класс описывает таблицу в базе данных
+    '''
     id = PrimaryKeyField()
-    name =
-    type =
-    serial =
-    status =
-    user =
+    name = CharField()
+    type = CharField()
+    serial = CharField()
+    status = CharField()
+    user = CharField()
+
+if __name__ == "__main__":
+    mysql_db.create_tables([EquipmentList])
