@@ -56,34 +56,3 @@
 #     print("Тренировки типа 'бег':", My_Tasks_19Controller.find_by_type("бег"))
 #     print("Общая продолжительность:", My_Tasks_19Controller.total_duration(), "минут")
 
-from MyTasks.Task19.Models.MyTasks_19 import *
-
-class WorkoutsController:
-    '''
-    Функции: добавить тренировку, статистика за неделю, найти по типу, общая продолжительность
-    '''
-
-    # добавить тренировку
-    @classmethod
-    def add(cls, date, type, duration, calories, notes):
-        # Вызвывем метод из peewee
-        WorkoutsList.create(date=date, type=type, duration=duration, calories=calories, notes=notes)
-
-    # # статистика за неделю
-    # @classmethod
-    # def weekly_stats(cls):
-    #     total_duration = 0
-    #     total_calories = 0
-
-    # Найти по типу
-    @classmethod
-    def get_type(cls, type):
-       return WorkoutsList.select().where(WorkoutsList.type == type)
-
-    # # Общая продолжительность
-    # @classmethod
-    # def total_duration(cls):
-    #     total = 0
-
-if __name__ == "__main__":
-    WorkoutsController.add('', '')

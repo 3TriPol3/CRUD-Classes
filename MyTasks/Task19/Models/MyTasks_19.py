@@ -24,9 +24,9 @@
 
 from MyTasks.Task19.Models.BaseModel import *
 
-class WorkoutsList(BaseModel): # Этот класс наследует базовую модель - BaseModel
+class WorkoutsList(BaseModel):
     '''
-    Этот класс описывает таблицу в базе данных
+    Это класс описывает таблицу в Базе Данных
     '''
     id = PrimaryKeyField()
     date = DateField()
