@@ -22,18 +22,3 @@
 #     equip.equipment = {"name": "Монитор Samsung", "type": "монитор", "serial": "DEF456", "status": "в резерве", "user": "не назначен"}
 #     print("Добавлено новое оборудование:", equip.equipment)
 
-from MyTasks.Task18.Models.BaseModel import *
-
-class EquipmentList(BaseModel):
-    '''
-    Этот класс описывает таблицу в БД
-    '''
-    id = PrimaryKeyField()
-    name = CharField()
-    type = CharField()
-    serial = CharField()
-    status = CharField()
-    user = CharField()
-
-if __name__ == "__main__":
-    mysql_db.create_tables([EquipmentList])
