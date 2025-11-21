@@ -26,14 +26,9 @@ from MyTasks.Task19.Models.BaseModel import *
 
 class WorkoutsList(BaseModel):
     '''
-    Это класс описывает таблицу в Базе Данных
+    Этот класс описывает таблицу в БД
     '''
     id = PrimaryKeyField()
     date = DateField()
     type = CharField()
-    duration = FloatField()
-    calories = FloatField()
-    notes = CharField()
-
-if __name__ == "__main__":
-    mysql_db.create_tables([WorkoutsList])
+    duration =
