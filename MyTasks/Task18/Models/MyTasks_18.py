@@ -24,9 +24,9 @@
 
 from MyTasks.Task18.Models.BaseModel import *
 
-class EquipmentList(BaseModel): # Этот класс наследует базовую модель - BaseModel
+class EquipmentList(BaseModel):
     '''
-    Этот класс описывает таблицу в базе данных
+    Этот класс описывает таблицу в БД
     '''
     id = PrimaryKeyField()
     name = CharField()

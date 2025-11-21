@@ -66,7 +66,6 @@ class EquipmentController:
     # Добавить оборудование
     @classmethod
     def add(cls, name, type, serial, status, user):
-        # Вызвывем метод из peewee
         EquipmentList.create(name=name, type=type, serial=serial, status=status, user=user)
 
     # Изменить статус
@@ -74,22 +73,22 @@ class EquipmentController:
     def update(cls, id, **kwargs):
         EquipmentList.update(**kwargs).where(EquipmentList.id == id).execute()
 
-    #найти по пользователю
+    # Найти по пользователю
     @classmethod
     def get_user(cls, user):
         return EquipmentList.select().where(EquipmentList.user == user)
 
-    # списать
+    # Списать(удалить)
     @classmethod
     def delete(cls, id):
         EquipmentList.delete_by_id(id)
 
 if __name__ == "__main__":
-    # EquipmentController.add('Ноутбук Acer','ноутбук','ABC111','в работе','Виктор')
+    # EquipmentController.add('Ноутбук Dell','ноутбук','ABC123','в работе','Петр') # Добавить оборудование
 
-    EquipmentController.update(1, status='не работает')
+    EquipmentController.update(1, status='не работает') # Изменить статус
 
-    for element in EquipmentController.get_user('Петр'):
+    for element in EquipmentController.get_user('Петр'): # Найти по пользователю
         print(element.id, element.name, element.type, element.serial, element.status, element.user)
 
-    # EquipmentController.delete(2)
+    # EquipmentController.delete(2) # Списать(удалить)

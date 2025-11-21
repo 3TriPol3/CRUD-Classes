@@ -21,14 +21,3 @@
 #     print("Исходные тренировки:", workout.workouts)
 #     workout.workouts = {"date": "2024-01-21", "type": "плавание", "duration": 60, "calories": 500, "notes": "В бассейне"}
 #     print("Добавлена новая тренировка:", workout.workouts)
-
-from MyTasks.Task19.Models.BaseModel import *
-
-class WorkoutsList(BaseModel):
-    '''
-    Этот класс описывает таблицу в БД
-    '''
-    id = PrimaryKeyField()
-    date = DateField()
-    type = CharField()
-    duration =

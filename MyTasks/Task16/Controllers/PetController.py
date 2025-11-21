@@ -96,12 +96,12 @@ class PetsController:
 
 
 if __name__ == "__main__":
-    PetsController.add('Барсик', 'кот', 3, 'Мария')
+    PetsController.add('Барсик', 'кот', 3, 'Мария') # добавить питомца
 
-    # PetsController.update(1, vaccinated=True)
+    # PetsController.update(1, vaccinated=True) # отметить прививку
 
-    for element in PetsController.get_pets_by_name('Мария'):
+    for element in PetsController.get_pets_by_name('Мария'): # питомцы владельца
         print(element.id, element.name, element.type, element.age, element.owner, element.vaccinated)
 
-    for element in PetsController.get_pets_by_type('кот'):
+    for element in PetsController.get_pets_by_type('кот'): # найти по типу
         print(element.id, element.name, element.type, element.age, element.owner, element.vaccinated)

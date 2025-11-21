@@ -86,13 +86,13 @@ class MusicController:
 
 
 if __name__ == "__main__":
-    # MusicController.add('Mimimamomu', 'anchik', '0', 2024, 'рэп')
+    # MusicController.add('Mimimamomu', 'anchik', '0', 2024, 'рэп') # добавить трек
 
-    for element in MusicController.get_artist('Queen'):
+    for element in MusicController.get_artist('Queen'): # найти по исполнителю
         print(element.id, element.title, element.artist, element.album, element.year, element.genre)
 
-    for element in MusicController.get_genre('рэп'):
+    for element in MusicController.get_genre('рэп'): # треки жанра
         print(element.id, element.title, element.artist, element.album, element.year, element.genre)
 
-    for element in MusicController.get_year(1975):
+    for element in MusicController.get_year(1975): # альбомы года
         print(element.id, element.title, element.artist, element.album, element.year, element.genre)
