@@ -36,7 +36,9 @@ class MovieView(Tk):
 
         # Поставить оценку
         self.rating_frame = ttk.Frame(self, borderwidth=1, relief=SOLID, padding=[8, 10])
-        self.rating_frame.pack()
+        self.rating_frame.pack(anchor='center', fill=X, pady=10, padx=10)
+        self.title_rating = ttk.Label(self.rating_frame, text='Введите id фильма и его новый рейтинг')
+        self.title_rating.pack()
 
         self.id_input = ttk.Entry(self.rating_frame)
         self.id_input.pack()
@@ -47,12 +49,17 @@ class MovieView(Tk):
         self.rating_button.pack()
 
     def update_rating(self):
-        self.id = self.id_input.get()
-        self.rating = self.rating_input.get()
-        if not self.id or not self.rating:
-            self.add_movie_title['text'] = 'Введите id фильма и рейтинг'
-        elif not self.id.isdigit() or not self.rating.isdecimal():
-            self.add_movie_title['text'] = 'id фильма и рейтинг должны быть числами'
+        self.id = self.id_input.get()   # id фильма
+        self.rating = self.rating_input.get() # новый рейтинг
+        if not self.id or not self.rating: # проверка на пустые поля
+            self.title_rating['text'] = 'Введите id фильма и рейтинг'
+        elif not self.id.isdigit(): # Проверка на целое число
+            self.title_rating['text'] = 'id фильма и рейтинг должны быть числами'
+        try:
+            float(self.rating)
+        except ValueError:
+            self.title_rating['text'] = 'id фильма и рейтинг должны быть числами'
+            return
         else:
             MovieController.rating_update(
                 id=self.id,
