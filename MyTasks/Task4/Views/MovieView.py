@@ -65,8 +65,8 @@ class MovieView(Tk):
                 id=self.id,
                 rating=self.rating
             )
-            self.id_input.delete(0, 'end')
-            self.rating_input.delete(0, 'end')
+        self.id_input.delete(0, 'end')
+        self.rating_input.delete(0, 'end')
 
     def add_film(self):
         self.name = self.name_film_input.get()
