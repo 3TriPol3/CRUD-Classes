@@ -55,3 +55,34 @@
 #     print("Оборудование пользователя Петр:", My_Tasks_18Controller.find_by_user("Петр"))
 #     My_Tasks_18Controller.write_off(1)
 #     print("После списания:", My_Tasks_18Controller.get())
+from MyTasks.Task18.Models.MyTasks_18 import *
+
+class EquipmentController:
+    '''
+    Функции: добавить оборудование, изменить статус, найти по пользователю, списать
+    '''
+
+    # добавить оборудование
+    @classmethod
+    def add(cls, name, type, serial, status, user):
+        EquipmentList.create(name=name, type=type, serial=serial, status=status, user=user)
+
+    # изменить статус
+    @classmethod
+    def update(cls, id, **kwargs):
+        EquipmentList.update(**kwargs).where(EquipmentList.id == id).execute()
+
+    # найти по пользователю
+    @classmethod
+    def get_user(cls, user):
+        return EquipmentList.select().where(EquipmentList.user == user)
+
+    # списать(удалить)
+    @classmethod
+    def delete(cls, id):
+        EquipmentList.delete_by_id(id)
+
+if __name__ == "__main__":
+    # EquipmentController.add()
+
+    EquipmentController.update(1, status='в разработке')
