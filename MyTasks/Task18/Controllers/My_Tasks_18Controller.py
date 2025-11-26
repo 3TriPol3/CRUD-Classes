@@ -83,6 +83,11 @@ class EquipmentController:
         EquipmentList.delete_by_id(id)
 
 if __name__ == "__main__":
-    # EquipmentController.add()
+    # EquipmentController.add('ASUS ROG PHONE 5', 'телефон', 'SSS999', 'в работе', 'Максим') # добавить оборудование
 
-    EquipmentController.update(1, status='в разработке')
+    EquipmentController.update(1, status='в разработке') # изменить статус
+
+    for el in EquipmentController.get_user('Петр'): # найти по пользователю
+        print(el.id, el.name, el.type, el.serial, el.status, el.user)
+
+    # EquipmentController.delete(8) # списать
