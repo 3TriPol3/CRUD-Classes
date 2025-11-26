@@ -51,7 +51,7 @@ class MovieView(Tk):
         self.button_update = ttk.Button(self.add_frame, text='Обновить таблицу', command=self.table)
         self.button_update.pack()
 
-    ######################ТАБЛИЦА########################
+    #############################ТАБЛИЦА##############################
         columns = ('id', 'title', 'year', 'rating', 'watched')
         self.tree = ttk.Treeview(self, columns=columns, show='headings')
         self.tree.pack(fill=BOTH, expand=1)
@@ -63,9 +63,9 @@ class MovieView(Tk):
     def item_select(self, event):
         self.item = self.tree.selection()[0] # Получить строку
         self.film = self.tree.item(self.item, "values")[0] # Из строки получаем id фильма
-        print(self.item)
-        print(self.film)
-        window_update_rating = UpdateRatindView(self.film)
+        self.id_input.delete(0, 'end')
+        self.id_input.insert(0, self.film)
+        # window_update_rating = UpdateRatindView(self.film)
 
     def table(self):
         # Очистить таблицу
