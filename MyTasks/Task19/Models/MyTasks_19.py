@@ -29,4 +29,11 @@ class WorkoutsList(BaseModel):
     Этот класс описывает таблицу в БД
     '''
     id = PrimaryKeyField()
-    date =
+    date = DateField()
+    type = CharField()
+    duration = IntegerField()
+    calories = FloatField()
+    notes = CharField()
+
+if __name__ == "__main__":
+    mysql_db.create_tables([WorkoutsList])

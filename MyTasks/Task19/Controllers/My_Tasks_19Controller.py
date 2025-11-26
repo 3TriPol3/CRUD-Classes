@@ -56,3 +56,41 @@
 #     print("Тренировки типа 'бег':", My_Tasks_19Controller.find_by_type("бег"))
 #     print("Общая продолжительность:", My_Tasks_19Controller.total_duration(), "минут")
 
+from MyTasks.Task19.Models.MyTasks_19 import *
+
+class WorkoutsController:
+    '''
+    Функции: добавить тренировку, статистика за неделю, найти по типу, общая продолжительность
+    '''
+
+    # добавить тренировку
+    @classmethod
+    def add(cls, date, type, duration, calories, notes):
+        WorkoutsList.create(date=date, type=type, duration=duration, calories=calories, notes=notes)
+
+    # # статистика за неделю
+    # @classmethod
+    # def weekly_stats(cls):
+    #     total_duration = 0
+    #     total_calories = 0
+
+    # найти по типу
+    @classmethod
+    def get_type(cls, type):
+        return WorkoutsList.select().where(WorkoutsList.type == type)
+
+    # # общая продолжительность
+    # @classmethod
+    # def total_duration(cls):
+    #     total = 0
+
+if __name__ == "__main__":
+    WorkoutsController.add('2025-11-26', 'ходьба', 60, 600, 'Утренняя ходьба') # добавить тренировку
+
+    # WorkoutsController.weekly_stats() # статистика за неделю # /*/
+
+    for el in WorkoutsController.get_type('бег'): # найти по типу
+        print(el.id, el.date, el.type, el.duration, el.calories, el.notes)
+
+    # WorkoutsController.total_duration() # общая продолжительность # /*/
+
