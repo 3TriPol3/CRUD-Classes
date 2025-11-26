@@ -55,7 +55,7 @@ class ExpensesController:
 
     # Добавить расход
     @classmethod
-    def add(cls, amount, category, date, description):
+    def add(cls, amount, category, date=False, description=False):
         # Вызвывем метод из peewee
         ExpensesList.create(amount=amount, category=category, date=date, description=description)
 
@@ -68,6 +68,15 @@ class ExpensesController:
     # расходы за период
     # @classmethod
     # def get_expenses_in_period(cls, start_date, end_date):
+
+    # Изменить описание расхода по - id
+    @classmethod
+    def description_update(cls, id, **kwargs):
+        ExpensesList.update(**kwargs).where(ExpensesList.id == id).execute()
+
+    @classmethod
+    def get(cls):
+        return ExpensesList.select()
 
 
 # if __name__ == "__main__":

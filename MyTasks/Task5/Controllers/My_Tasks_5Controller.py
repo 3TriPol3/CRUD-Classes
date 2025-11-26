@@ -66,13 +66,13 @@ class StudentsController:
 
     # Добавить нового студента
     @classmethod
-    def add(cls, name, age, grade):
+    def add(cls, name, age, grade=False):
         # Вызвывем метод из peewee (create)
         StudentsList.create(name=name, age=age, grade=grade)
 
     # Изменить оценку студента по - id
     @classmethod
-    def update(cls, id, **kwargs):
+    def grade_update(cls, id, **kwargs):
         StudentsList.update(**kwargs).where(StudentsList.id == id).execute()
 
     # Найти студента по имени - name
@@ -85,11 +85,15 @@ class StudentsController:
     def delete(cls, id):
         StudentsList.delete_by_id(id)
 
+    @classmethod
+    def get(cls):
+        return StudentsList.select()
+
 
 if __name__ == "__main__":
     # StudentsController.add('Sergey','25','C') # Добавить Студента
 
-    # StudentsController.update(5, grade='D') # Изменить оценку
+    # StudentsController.grade_update(5, grade='D') # Изменить оценку
 
     for element in StudentsController.get_name('Max'): # Найти по имени
         print(element.id, element.name, element.age, element.grade)
