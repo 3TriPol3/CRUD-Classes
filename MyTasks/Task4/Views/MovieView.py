@@ -2,7 +2,7 @@ from tkinter import *
 from tkinter import ttk
 
 from MyTasks.Task4.Controllers.My_Tasks_4Controller import MovieController
-
+from MyTasks.Task4.Views.UpdateRatindView import UpdateRatindView
 
 class MovieView(Tk):
     def __init__(self):
@@ -46,18 +46,26 @@ class MovieView(Tk):
         self.rating_button = ttk.Button(self.rating_frame, text='Изменить рейтинг')
         self.rating_button["command"] = self.update_rating
         self.rating_button.pack()
+
+        # Кнопка обновления таблицы
+        self.button_update = ttk.Button(self.add_frame, text='Обновить таблицу', command=self.table)
+        self.button_update.pack()
+
     ######################ТАБЛИЦА########################
-        columns = ('title', 'year', 'rating', 'watched')
+        columns = ('id', 'title', 'year', 'rating', 'watched')
         self.tree = ttk.Treeview(self, columns=columns, show='headings')
         self.tree.pack(fill=BOTH, expand=1)
         self.table() # Обновить таблицу фильмов
         # Событие при выборе строки в таблице
-        self.tree.bind("<<TreeviewSelect", self.item_select)
+        self.tree.bind("<<TreeviewSelect>>", self.item_select)
 
     # Метод который будет запускать окно для изменения рейтинга при выборе строки из таблицы
-    def item_select(self):
+    def item_select(self, event):
         self.item = self.tree.selection()[0] # Получить строку
-        self.film = self.tree.item(self.item, "values")[0] # Из строки получаем название фильма
+        self.film = self.tree.item(self.item, "values")[0] # Из строки получаем id фильма
+        print(self.item)
+        print(self.film)
+        window_update_rating = UpdateRatindView(self.film)
 
     def table(self):
         # Очистить таблицу
@@ -72,7 +80,8 @@ class MovieView(Tk):
             else:
                 watched = 'НЕ просмотрен'
             list_films.append(
-                (film.title,
+                (film.id,
+                film.title,
                 film.year,
                 film.rating,
                 watched)
