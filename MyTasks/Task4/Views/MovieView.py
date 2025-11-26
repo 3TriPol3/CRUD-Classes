@@ -39,7 +39,6 @@ class MovieView(Tk):
         self.rating_frame.pack(anchor='center', fill=X, pady=10, padx=10)
         self.title_rating = ttk.Label(self.rating_frame, text='Введите id фильма и его новый рейтинг')
         self.title_rating.pack()
-
         self.id_input = ttk.Entry(self.rating_frame)
         self.id_input.pack()
         self.rating_input = ttk.Entry(self.rating_frame)
@@ -47,6 +46,41 @@ class MovieView(Tk):
         self.rating_button = ttk.Button(self.rating_frame, text='Изменить рейтинг')
         self.rating_button["command"] = self.update_rating
         self.rating_button.pack()
+    ######################ТАБЛИЦА########################
+        columns = ('title', 'year', 'rating', 'watched')
+        self.tree = ttk.Treeview(self, columns=columns, show='headings')
+        self.tree.pack(fill=BOTH, expand=1)
+        #
+
+        self.table() # Обновить таблицу фильмов
+
+    def table(self):
+        # Очистить таблицу
+        for item in self.tree.get_children():
+            self.tree.delete(item)
+        # Получить список фильмов из БД
+        films = MovieController.get()
+        list_films = []
+        for film in films:
+            if film.watched:
+                watched = 'Просмотрен'
+            else:
+                watched = 'НЕ просмотрен'
+            list_films.append(
+                (film.title,
+                film.year,
+                film.rating,
+                watched)
+            )
+        # Заголовки для таблицы
+        self.tree.heading('title', text='Название фильма')
+        self.tree.heading('year', text='Год выпуска фильма')
+        self.tree.heading('rating', text='Рейтинг фильма')
+        self.tree.heading('watched', text='Статус фильма')
+        #Добавить данные в таблицу
+        for film in list_films:
+            self.tree.insert('',END, values=film)
+
 
     def update_rating(self):
         self.id = self.id_input.get()   # id фильма
@@ -67,6 +101,7 @@ class MovieView(Tk):
             )
         self.id_input.delete(0, 'end')
         self.rating_input.delete(0, 'end')
+        self.table() # Обновить таблицу фильмов
 
     def add_film(self):
         self.name = self.name_film_input.get()
@@ -80,3 +115,4 @@ class MovieView(Tk):
             )
             self.name_film_input.delete(0,'end')
             self.year_film_input.delete(0,'end')
+        self.table() # Обновить таблицу фильмов

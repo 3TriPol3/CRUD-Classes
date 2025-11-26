@@ -27,6 +27,10 @@ class MovieController:
         '''показать непросмотренные'''
         return MovieList.select().where(MovieList.watched == False)
 
+    @classmethod
+    def get(cls):
+        return MovieList.select()
+
 if __name__ == "__main__":
     # MovieController.add('1+1',1992) # Добавить фильм
 
