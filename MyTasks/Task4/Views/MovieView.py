@@ -50,9 +50,14 @@ class MovieView(Tk):
         columns = ('title', 'year', 'rating', 'watched')
         self.tree = ttk.Treeview(self, columns=columns, show='headings')
         self.tree.pack(fill=BOTH, expand=1)
-        #
-
         self.table() # Обновить таблицу фильмов
+        # Событие при выборе строки в таблице
+        self.tree.bind("<<TreeviewSelect", self.item_select)
+
+    # Метод который будет запускать окно для изменения рейтинга при выборе строки из таблицы
+    def item_select(self):
+        self.item = self.tree.selection()[0] # Получить строку
+        self.film = self.tree.item(self.item, "values")[0] # Из строки получаем название фильма
 
     def table(self):
         # Очистить таблицу
