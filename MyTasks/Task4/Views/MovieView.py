@@ -71,6 +71,7 @@ class MovieView(Tk):
         # Очистить таблицу
         for item in self.tree.get_children():
             self.tree.delete(item)
+
         # Получить список фильмов из БД
         films = MovieController.get()
         list_films = []
