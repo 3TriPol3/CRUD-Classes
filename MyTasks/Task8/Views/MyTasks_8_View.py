@@ -124,7 +124,7 @@ class MyTasks_8_View(Tk):
         self.position = self.position_staff_input.get()
         self.department = self.department_staff_input.get()
         if self.name == '' or self.position == '' or self.department == '':
-            self.add_staff_name['text'] = 'Введите имя, должность и отдел сотрудника'
+            self.add_staff_title['text'] = 'Введите имя, должность и отдел сотрудника'
         else:
             StaffController.add(
                 name=self.name,

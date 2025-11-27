@@ -57,7 +57,7 @@ class ExpensesController:
     @classmethod
     def add(cls, amount, category, date, description=False):
         # Вызвывем метод из peewee
-        ExpensesList.create(amount=amount, category=category, date=date, description=False)
+        ExpensesList.create(amount=amount, category=category, date=date, description=description)
 
     # сумма по категории
     # @classmethod
