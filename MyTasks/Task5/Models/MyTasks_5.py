@@ -33,7 +33,7 @@ class StudentsList(BaseModel): # Этот класс наследует базо
     id = PrimaryKeyField()
     name = CharField()
     age = IntegerField()
-    grade = CharField()
+    grade = CharField(default=False)
 
 
 

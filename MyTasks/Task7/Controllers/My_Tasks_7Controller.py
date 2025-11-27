@@ -66,9 +66,9 @@ class BooksController:
 
     # Добавить книгу
     @classmethod
-    def add(cls, title, author, year=False, read=False):
+    def add(cls, title, author, year=0, read=False):
         # Вызвывем метод из peewee
-        BooksList.create(title=title, author=author, year=False, read=False)
+        BooksList.create(title=title, author=author, year=0, read=False)
 
     # Изменить запись
     @classmethod

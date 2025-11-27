@@ -68,7 +68,7 @@ class StudentsController:
     @classmethod
     def add(cls, name, age, grade=False):
         # Вызвывем метод из peewee (create)
-        StudentsList.create(name=name, age=age, grade=grade)
+        StudentsList.create(name=name, age=age, grade=False)
 
     # Изменить оценку студента по - id
     @classmethod

@@ -32,8 +32,8 @@ class ExpensesList(BaseModel): # Этот класс наследует базо
     id = PrimaryKeyField()
     amount = IntegerField()
     category = CharField()
-    date = DateField()
-    description = CharField()
+    date = DateField(default=False)
+    description = CharField(default=False)
 
 
 if __name__ == "__main__":

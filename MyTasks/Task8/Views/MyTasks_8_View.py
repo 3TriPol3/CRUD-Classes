@@ -17,10 +17,10 @@ class MyTasks_8_View(Tk):
         self.add_staff_title.pack()
 
         # Имя сотрудника
-        self.title_staff = ttk.Label(self.add_frame, text="Введите Имя сотрудника")
-        self.title_staff.pack()
-        self.title_staff_input = ttk.Entry(self.add_frame)
-        self.title_staff_input.pack()
+        self.name_staff = ttk.Label(self.add_frame, text="Введите Имя сотрудника")
+        self.name_staff.pack()
+        self.name_staff_input = ttk.Entry(self.add_frame)
+        self.name_staff_input.pack()
 
         # Должность сотрудника
         self.position_staff = ttk.Label(self.add_frame, text="Введите должность сотрудника")
@@ -77,10 +77,10 @@ class MyTasks_8_View(Tk):
         for staff in staffs:
             list_staffs.append(
                 (staff.id,
-                 staff.title,
-                 staff.author,
-                 staff.year,
-                 staff.read)
+                 staff.name,
+                 staff.position,
+                 staff.salary,
+                 staff.department)
             )
 
         # Заголовки для таблицы
@@ -112,5 +112,19 @@ class MyTasks_8_View(Tk):
         self.id_input.delete(0, 'end')
         self.salary_input.delete(0, 'end')
         self.table() # Обновить таблицу сотрудников
+
+    def add_staff(self):
+        self.name = self.name_staff_input.get()
+        self.position = self.position_staff_input.get()
+        if self.name == '' or self.position == '':
+            self.add_staff_name['text'] = 'Введите имя и должность сотрудника'
+        else:
+            StaffController.add(
+                name=self.name,
+                position=self.position
+            )
+            self.name_staff_input.delete(0, 'end')
+            self.position_staff_input.delete(0, 'end')
+        self.table()  # Обновить таблицу сотрудников
 
 

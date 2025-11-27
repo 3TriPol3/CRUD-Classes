@@ -31,7 +31,7 @@ class StaffList(BaseModel): # Этот класс наследует базов�
     id = PrimaryKeyField()
     name = CharField()
     position = CharField()
-    salary = FloatField()
+    salary = FloatField(default=0)
     department = CharField(default=False)
 
 
