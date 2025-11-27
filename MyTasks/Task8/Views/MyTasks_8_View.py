@@ -28,6 +28,12 @@ class MyTasks_8_View(Tk):
         self.position_staff_input = ttk.Entry(self.add_frame)
         self.position_staff_input.pack()
 
+        # Отдел сотрудника
+        self.department_staff = ttk.Label(self.add_frame, text="Введите отдел сотрудника")
+        self.department_staff.pack()
+        self.department_staff_input = ttk.Entry(self.add_frame)
+        self.department_staff_input.pack()
+
         # Кнопка
         self.add_staff_button = ttk.Button(self.add_frame, text="Добавить сотрудника")
         self.add_staff_button["command"] = self.add_staff
@@ -116,15 +122,18 @@ class MyTasks_8_View(Tk):
     def add_staff(self):
         self.name = self.name_staff_input.get()
         self.position = self.position_staff_input.get()
-        if self.name == '' or self.position == '':
-            self.add_staff_name['text'] = 'Введите имя и должность сотрудника'
+        self.department = self.department_staff_input.get()
+        if self.name == '' or self.position == '' or self.department == '':
+            self.add_staff_name['text'] = 'Введите имя, должность и отдел сотрудника'
         else:
             StaffController.add(
                 name=self.name,
-                position=self.position
+                position=self.position,
+                department=self.department
             )
             self.name_staff_input.delete(0, 'end')
             self.position_staff_input.delete(0, 'end')
+            self.department_staff_input.delete(0, 'end')
         self.table()  # Обновить таблицу сотрудников
 
 

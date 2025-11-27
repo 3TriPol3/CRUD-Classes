@@ -32,7 +32,7 @@ class ExpensesList(BaseModel): # Этот класс наследует базо
     id = PrimaryKeyField()
     amount = IntegerField()
     category = CharField()
-    date = DateField(default=False)
+    date = DateField()
     description = CharField(default=False)
 
 

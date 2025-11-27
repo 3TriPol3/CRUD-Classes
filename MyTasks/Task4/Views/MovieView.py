@@ -7,9 +7,9 @@ from MyTasks.Task4.Views.UpdateRatindView import UpdateRatindView
 class MovieView(Tk):
     def __init__(self):
         super().__init__()
-        # Конфигурация окна
+        # Конфигурация(создание) окна
         self.title("Просмотр фильмов")
-        self.geometry('800x500')
+        self.geometry('1000x600')
 
         # Добавить фильм
         self.add_frame = ttk.Frame(self, borderwidth=1, relief=SOLID, padding=[8,10])
@@ -51,7 +51,7 @@ class MovieView(Tk):
         self.button_update = ttk.Button(self.add_frame, text='Обновить таблицу', command=self.table)
         self.button_update.pack()
 
-    #############################ТАБЛИЦА##############################
+    ######################################ТАБЛИЦА###########################################
         columns = ('id', 'title', 'year', 'rating', 'watched')
         self.tree = ttk.Treeview(self, columns=columns, show='headings')
         self.tree.pack(fill=BOTH, expand=1)

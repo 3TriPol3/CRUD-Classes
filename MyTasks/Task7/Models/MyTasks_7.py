@@ -32,7 +32,7 @@ class BooksList(BaseModel): # Этот класс наследует базов�
     id = PrimaryKeyField()
     title = CharField()
     author = CharField()
-    year = IntegerField(default=0)
+    year = IntegerField()
     read = BooleanField(default=False) # поле Логическое, по умолчанию False
 
 

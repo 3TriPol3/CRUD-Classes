@@ -65,9 +65,9 @@ class StaffController:
 
     # Добавить книгу
     @classmethod
-    def add(cls, name, position, salary=0, department=False):
+    def add(cls, name, position, salary, department):
         # Вызвывем метод из peewee
-        StaffList.create(name=name, position=position, salary=0, department=False)
+        StaffList.create(name=name, position=position, salary=0, department=department)
 
     #  Увеличение зарплаты по - id
     @classmethod

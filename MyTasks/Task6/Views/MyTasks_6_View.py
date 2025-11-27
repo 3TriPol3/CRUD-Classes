@@ -28,6 +28,12 @@ class MyTasks_6_View(Tk):
         self.category_expense_input = ttk.Entry(self.add_frame)
         self.category_expense_input.pack()
 
+        # Дата расхода
+        self.date_expense = ttk.Label(self.add_frame, text="Введите дату расхода")
+        self.date_expense.pack()
+        self.date_expense_input = ttk.Entry(self.add_frame)
+        self.date_expense_input.pack()
+
         # Кнопка
         self.add_expense_button = ttk.Button(self.add_frame, text="Добавить расход")
         self.add_expense_button["command"] = self.add_expense
@@ -115,13 +121,16 @@ class MyTasks_6_View(Tk):
     def add_expense(self):
         self.amount = self.amount_expense_input.get()
         self.category = self.category_expense_input.get()
-        if self.amount == '' or self.category == '':
+        self.date = self.date_expense_input.get()
+        if self.amount == '' or self.category == '' or self.date == '':
             self.add_expense_title['text'] = 'Введите Количество и категорию расхода'
         else:
             ExpensesController.add(
             amount=self.amount,
-            category=self.category
+            category=self.category,
+            date=self.date
             )
             self.amount_expense_input.delete(0,'end')
             self.category_expense_input.delete(0,'end')
+            self.date_expense_input.delete(0, 'end')
         self.table() # Обновить таблицу расходов

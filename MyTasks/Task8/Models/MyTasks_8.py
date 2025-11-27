@@ -32,7 +32,7 @@ class StaffList(BaseModel): # Этот класс наследует базов�
     name = CharField()
     position = CharField()
     salary = FloatField(default=0)
-    department = CharField(default=False)
+    department = CharField()
 
 
 if __name__ == "__main__":
