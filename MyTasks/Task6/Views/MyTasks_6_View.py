@@ -74,10 +74,6 @@ class MyTasks_6_View(Tk):
         expenses = ExpensesController.get()
         list_expenses = []
         for expense in expenses:
-            if expense.description:
-                description = ''
-            else:
-                description = ''
             list_expenses.append(
                 (expense.id,
                 expense.amount,

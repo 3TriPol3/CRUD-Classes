@@ -66,9 +66,9 @@ class BooksController:
 
     # Добавить книгу
     @classmethod
-    def add(cls, title, author, year, read=False):
+    def add(cls, title, author, year=False, read=False):
         # Вызвывем метод из peewee
-        BooksList.create(title=title, author=author, year=year, read=False)
+        BooksList.create(title=title, author=author, year=False, read=False)
 
     # Изменить запись
     @classmethod
@@ -90,6 +90,14 @@ class BooksController:
     def get_year(cls, year):
         return BooksList.select().where(BooksList.year == year)
 
+    # Изменить год книги по - id
+    @classmethod
+    def year_update(cls, id, **kwargs):
+        BooksList.update(**kwargs).where(BooksList.id == id).execute()
+
+    @classmethod
+    def get(cls):
+        return BooksList.select()
 
 
 if __name__ == "__main__":

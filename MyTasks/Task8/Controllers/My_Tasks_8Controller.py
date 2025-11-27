@@ -65,13 +65,14 @@ class StaffController:
 
     # Добавить книгу
     @classmethod
-    def add(cls, name, position, salary, department):
+    def add(cls, name, position, salary, department=False):
         # Вызвывем метод из peewee
-        StaffList.create(name=name, position=position, salary=salary, department=department)
+        StaffList.create(name=name, position=position, salary=salary, department=False)
 
-    #Увеличение зарплаты
-    # @classmethod
-    # def increase_salary(cls, id, amount):
+    #  Увеличение зарплаты по - id
+    @classmethod
+    def salary_update(cls, id, **kwargs):
+        StaffList.update(**kwargs).where(StaffList.id == id).execute()
 
     # Сотрудники по отделам - department
     @classmethod
@@ -83,12 +84,16 @@ class StaffController:
     def delete(cls, id):
         StaffList.delete_by_id(id)
 
+    @classmethod
+    def get(cls):
+        return StaffList.select()
+
 
 
 if __name__ == "__main__":
     # StaffController.add('Анастасия', 'Главный Бухгалтер', 75000, 'Бухгалтерия')  # Добавить сотрудника
 
-    # StaffController.increase_salary(1)  #Увеличение зарплаты # /*/
+    StaffController.salary_update(1, salary=100000)  #Увеличение зарплаты
 
     for element in StaffController.get_department('IT'): # Сотрудники по отделам
         print(element.id, element.name, element.position, element.salary, element.department)

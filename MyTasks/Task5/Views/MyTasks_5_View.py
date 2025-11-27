@@ -76,10 +76,6 @@ class MyTasks_5_View(Tk):
         students = StudentsController.get()
         list_students = []
         for student in students:
-            if student.grade:
-                grade = 'Просмотрен'
-            else:
-                grade = 'НЕ просмотрен'
             list_students.append(
                 (student.id,
                 student.name,
