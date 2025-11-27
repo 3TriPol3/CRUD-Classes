@@ -31,7 +31,7 @@ class PhoneList(BaseModel): # Этот класс наследует базов�
     '''
     id = PrimaryKeyField()
     name = CharField()
-    phone = IntegerField()
+    phone = IntegerField(default=0)
     email = CharField()
 
 if __name__ == "__main__":

@@ -60,7 +60,7 @@ from MyTasks.Task2.Models.MyTasks_2 import *
 # Функции: добавить контакт, найти по имени, обновить телефон, удалить контакт
 
 
-class PhoneListController:
+class PhoneController:
     '''
     CRUD
     Функции: добавить контакт, найти по имени, обновить телефон, удалить контакт
@@ -68,7 +68,7 @@ class PhoneListController:
 
     # Добавление контакта
     @classmethod
-    def add(cls, name, phone, email):
+    def add(cls, name, email, phone=0):
         # Вызвывем метод из peewee
         PhoneList.create(name=name, phone=phone, email=email)
 
@@ -93,11 +93,11 @@ class PhoneListController:
 
 
 if __name__ == "__main__":
-    # PhoneListController.add('Максим', '+79123458888','maxim@mail.ru' ) # Добавить контакт
-    for element in PhoneListController.get_name('Максим'): # Найти по имени
+    # PhoneController.add('Максим', '+79123458888','maxim@mail.ru' ) # Добавить контакт
+    for element in PhoneController.get_name('Максим'): # Найти по имени
         print(element.id, element.name, element.phone, element.email)
     # PhoneListController.update(1, name='Олег', phone='+79199999999', email = 'maxxxim@mail.ru') # Обновить телефон
-    PhoneListController.delete(2) # Удалить контакт
+    PhoneController.delete(2) # Удалить контакт
 
-    for element in PhoneListController.get(): # Найти по имени
+    for element in PhoneController.get(): # Найти по имени
         print(element.id, element.name, element.phone, element.email)

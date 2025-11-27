@@ -8,7 +8,7 @@ class MyTasks_8_View(Tk):
         super().__init__()
         # Конфигурация окна
         self.title("Учет сотрудников")
-        self.geometry('1000x500')
+        self.geometry('1000x600')
 
         # Добавить сотрудника
         self.add_frame = ttk.Frame(self, borderwidth=1, relief=SOLID, padding=[8, 10])
