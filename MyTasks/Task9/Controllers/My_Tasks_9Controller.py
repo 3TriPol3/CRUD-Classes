@@ -66,9 +66,9 @@ class GamesController:
 
     # Добавить игру
     @classmethod
-    def add(cls, title, genre, platform):
+    def add(cls, title, genre, platform, completed=False):
         # Вызвывем метод из peewee
-        GamesList.create(title=title, genre=genre, platform=platform, completed=False)
+        GamesList.create(title=title, genre=genre, platform=platform, completed=completed)
 
     # Найти игру по жанру - genre
     @classmethod
@@ -89,6 +89,14 @@ class GamesController:
     @classmethod
     def get_platform(cls, platform):
         return GamesList.select().where(GamesList.platform == platform)
+
+    @classmethod
+    def update_completed(cls, id, **kwargs):
+        GamesList.update(**kwargs).where(GamesList.id == id).execute()
+
+    @classmethod
+    def get(cls):
+        return GamesList.select()
 
 
 if __name__ == "__main__":

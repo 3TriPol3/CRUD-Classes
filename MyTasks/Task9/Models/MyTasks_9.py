@@ -33,7 +33,7 @@ class GamesList(BaseModel): # Этот класс наследует базов�
     title = CharField()
     genre = CharField()
     platform = CharField()
-    completed = BooleanField()
+    completed = BooleanField(default=False)
 
 
 if __name__ == "__main__":

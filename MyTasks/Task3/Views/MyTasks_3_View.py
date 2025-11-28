@@ -6,7 +6,7 @@ class MyTasks_3_View(Tk):
     def __init__(self):
         super().__init__()
         # Конфигурация окна
-        self.title("Учет сотрудников")
+        self.title("Список покупок")
         self.geometry('1000x600')
 
         # Добавить покупку
@@ -87,7 +87,7 @@ class MyTasks_3_View(Tk):
         self.tree.heading('bought', text='Статус покупки')
         # Добавить данные в таблицу
         for shop in list_shops:
-            self.tree.insert('', END, values=staff)
+            self.tree.insert('', END, values=shop)
 
     def update_bought(self):
         self.id = self.id_input.get()  # id сотрудника
@@ -108,4 +108,18 @@ class MyTasks_3_View(Tk):
             )
         self.id_input.delete(0, 'end')
         self.bought_input.delete(0, 'end')
+        self.table()  # Обновить таблицу сотрудников
+
+    def add_shop(self):
+        self.product = self.product_shop_input.get()
+        self.quantity = self.quantity_shop_input.get()
+        if self.product == '' or self.quantity == '':
+            self.add_shop_title['text'] = 'Название продукта и Количество продукта'
+        else:
+            ShopingListController.add(
+                product=self.product,
+                quantity=self.quantity
+            )
+            self.product_shop_input.delete(0, 'end')
+            self.quantity_shop_input.delete(0, 'end')
         self.table()  # Обновить таблицу сотрудников

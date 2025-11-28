@@ -31,7 +31,7 @@ class MealsList(BaseModel): # Этот класс наследует базов�
     id = PrimaryKeyField()
     meal = CharField()
     food = CharField()
-    calories = FloatField()
+    calories = FloatField(default=0.0)
     time = TimeField()
 
 

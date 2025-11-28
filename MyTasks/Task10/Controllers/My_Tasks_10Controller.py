@@ -54,7 +54,7 @@ class MealsController:
 
     # Добавить прием пищи
     @classmethod
-    def add(cls, meal, food, calories, time):
+    def add(cls, meal, food, time, calories=0.0):
         # Вызвывем метод из peewee
         MealsList.create(meal=meal, food=food, calories=calories, time=time)
 
@@ -67,6 +67,14 @@ class MealsController:
     @classmethod
     def get_time(cls, time):
         return MealsList.select().where(MealsList.time == time)
+
+    @classmethod
+    def calories_update(cls, id, **kwargs):
+        MealsList.update(**kwargs).where(MealsList.id == id).execute()
+
+    @classmethod
+    def get(cls):
+        return MealsList.select()
 
 
 if __name__ == "__main__":

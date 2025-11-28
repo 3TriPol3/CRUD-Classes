@@ -92,7 +92,7 @@ class ShopingListController:
         ShopingList.delete_by_id(id)
 
     @classmethod
-    def update_bought(cls, id, **kwargs):
+    def bought_update(cls, id, **kwargs):
         ShopingList.update(**kwargs).where(ShopingList.id == id).execute()
 
 
