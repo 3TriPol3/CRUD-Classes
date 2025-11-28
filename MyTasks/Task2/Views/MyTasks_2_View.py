@@ -53,3 +53,48 @@ class MyTasks_2_View(Tk):
         self.phone_button = ttk.Button(self.phone_frame, text='Изменить телефон')
         self.phone_button["command"] = self.update_phone
         self.phone_button.pack()
+
+        # Кнопка обновления таблицы
+        self.button_update = ttk.Button(self.add_frame, text='Обновить таблицу', command=self.table)
+        self.button_update.pack()
+    ######################################ТАБЛИЦА###########################################
+        columns = ('id', 'name', 'phone', 'email')
+        self.tree = ttk.Treeview(self, columns=columns, show='headings')
+        self.tree.pack(fill=BOTH, expand=1)
+        self.table()  # Обновить таблицу телефонных записей
+        # Событие при выборе строки в таблице
+        self.tree.bind("<<TreeviewSelect>>", self.item_select)
+
+    # Метод который будет запускать окно для изменения телефона при выборе строки из таблицы
+    def item_select(self, event):
+        self.item = self.tree.selection()[0]  # Получить строку
+        self.phone = self.tree.item(self.item, "values")[0]  # Из строки получаем id телефонной записи
+        self.id_input.delete(0, 'end')
+        self.id_input.insert(0, self.phone)
+        # window_update_rating = UpdateRatindView(self.phone)
+
+    def table(self):
+        # Очистить таблицу
+        for item in self.tree.get_children():
+            self.tree.delete(item)
+
+        # Получить список сотрудников из БД
+        phones = PhoneController.get()
+        list_phones = []
+        for phone in phones:
+            list_phones.append(
+                (phone.id,
+                 phone.name,
+                 phone.position,
+                 phone.salary,
+                 phone.department)
+            )
+
+        # Заголовки для таблицы
+        self.tree.heading('name', text='Имя сотрудника')
+        self.tree.heading('position', text='Должность')
+        self.tree.heading('salary', text='Зарплата')
+        self.tree.heading('department', text='Отдел')
+        # Добавить данные в таблицу
+        for phone in list_phones:
+            self.tree.insert('', END, values=phone)
