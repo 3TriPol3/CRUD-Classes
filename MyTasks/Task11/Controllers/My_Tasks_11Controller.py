@@ -55,7 +55,7 @@ class EventsController:
 
     # Добавить событие
     @classmethod
-    def add(cls, title, date, time, description):
+    def add(cls, title, date, time, description=False):
         # Вызвывем метод из peewee
         EventsList.create(title=title, date=date, time=time, description=description)
 
@@ -68,6 +68,15 @@ class EventsController:
     # @classmethod
     # def upcoming_events(cls):
     #     result = []
+
+    #  Увеличение зарплаты по - id
+    @classmethod
+    def description_update(cls, id, **kwargs):
+        EventsList.update(**kwargs).where(EventsList.id == id).execute()
+
+    @classmethod
+    def get(cls):
+        return EventsList.select()
 
 
 if __name__ == "__main__":

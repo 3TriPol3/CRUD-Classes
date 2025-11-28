@@ -32,7 +32,7 @@ class EventsList(BaseModel): # Этот класс наследует базов
     title = CharField()
     date = DateField()
     time = TimeField()
-    description = CharField()
+    description = CharField(default=False)
 
 
 if __name__ == "__main__":
