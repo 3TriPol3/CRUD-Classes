@@ -24,10 +24,10 @@ class MyTasks_2_View(Tk):
 
 
         # Телефон
-        self.number_phone = ttk.Label(self.add_frame, text="Введите Телефон")
-        self.number_phone.pack()
-        self.number_phone_input = ttk.Entry(self.add_frame)
-        self.number_phone_input.pack()
+        self.phone_phone = ttk.Label(self.add_frame, text="Введите Телефон")
+        self.phone_phone.pack()
+        self.phone_phone_input = ttk.Entry(self.add_frame)
+        self.phone_phone_input.pack()
 
 
         # Электронная почта
@@ -78,23 +78,59 @@ class MyTasks_2_View(Tk):
         for item in self.tree.get_children():
             self.tree.delete(item)
 
-        # Получить список сотрудников из БД
+        # Получить список телефонных записей из БД
         phones = PhoneController.get()
         list_phones = []
         for phone in phones:
             list_phones.append(
                 (phone.id,
                  phone.name,
-                 phone.position,
-                 phone.salary,
-                 phone.department)
+                 phone.phone,
+                 phone.email)
             )
 
         # Заголовки для таблицы
-        self.tree.heading('name', text='Имя сотрудника')
-        self.tree.heading('position', text='Должность')
-        self.tree.heading('salary', text='Зарплата')
-        self.tree.heading('department', text='Отдел')
+        self.tree.heading('name', text='Имя контакта')
+        self.tree.heading('phone', text='Телефонный номер')
+        self.tree.heading('email', text='Электронная почта')
         # Добавить данные в таблицу
         for phone in list_phones:
             self.tree.insert('', END, values=phone)
+
+    def update_phone(self):
+        self.id = self.id_input.get()  # id сотрудника
+        self.phone = self.phone_input.get()  # новое описание
+        if not self.id or not self.phone:  # проверка на пустые поля
+            self.title_phone['text'] = 'Введите id записи и телефон'
+        elif not self.id.isdigit():  # Проверка на целое число
+            self.title_phone['text'] = 'id записи и телефон должны быть числами'
+        try:
+            self.phone
+        except ValueError:
+            self.title_phone['text'] = 'id записи и телефон должны быть числами'
+            return
+        else:
+            PhoneController.phone_update(
+                id=self.id,
+                phone=self.phone
+            )
+        self.id_input.delete(0, 'end')
+        self.phone_input.delete(0, 'end')
+        self.table()  # Обновить таблицу телефонных записей
+
+    def add_phone(self):
+        self.name = self.name_phone_input.get()
+        self.phone = self.phone_phone_input.get()
+        self.email = self.email_phone_input.get()
+        if self.name == '' or self.phone == '' or self.email == '':
+            self.add_phone_title['text'] = 'Введите имя, телефон и электронную почту'
+        else:
+            PhoneController.add(
+                name=self.name,
+                phone=self.phone,
+                email=self.email
+            )
+            self.name_phone_input.delete(0, 'end')
+            self.phone_phone_input.delete(0, 'end')
+            self.email_phone_input.delete(0, 'end')
+        self.table()  # Обновить таблицу телефонных записей

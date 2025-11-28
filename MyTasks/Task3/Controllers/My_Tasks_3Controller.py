@@ -66,9 +66,9 @@ class ShopingListController:
     '''
 
     @classmethod
-    def add(cls, product, quantity):
+    def add(cls, product, quantity, bought=False):
         # Вызвывем метод из peewee
-        ShopingList.create(product=product, quantity=quantity, bought=False)
+        ShopingList.create(product=product, quantity=quantity, bought=bought)
 
     @classmethod
     def update(cls, id, **kwargs):
@@ -90,6 +90,10 @@ class ShopingListController:
     @classmethod
     def delete(cls, id):
         ShopingList.delete_by_id(id)
+
+    @classmethod
+    def update_bought(cls, id, **kwargs):
+        ShopingList.update(**kwargs).where(ShopingList.id == id).execute()
 
 
 if __name__ == "__main__":

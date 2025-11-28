@@ -83,7 +83,7 @@ class PhoneController:
 
     # Обновить телефон
     @classmethod
-    def update(cls, id, **kwargs):
+    def phone_update(cls, id, **kwargs):
         PhoneList.update(**kwargs).where(PhoneList.id == id).execute()
 
     # Удалить контакт
@@ -91,12 +91,16 @@ class PhoneController:
     def delete(cls, id):
         PhoneList.delete_by_id(id)
 
+    @classmethod
+    def get(cls):
+        return PhoneList.select()
+
 
 if __name__ == "__main__":
     # PhoneController.add('Максим', '+79123458888','maxim@mail.ru' ) # Добавить контакт
     for element in PhoneController.get_name('Максим'): # Найти по имени
         print(element.id, element.name, element.phone, element.email)
-    # PhoneListController.update(1, name='Олег', phone='+79199999999', email = 'maxxxim@mail.ru') # Обновить телефон
+    # PhoneListController.phone_update(1, name='Олег', phone='+79199999999', email = 'maxxxim@mail.ru') # Обновить телефон
     PhoneController.delete(2) # Удалить контакт
 
     for element in PhoneController.get(): # Найти по имени
